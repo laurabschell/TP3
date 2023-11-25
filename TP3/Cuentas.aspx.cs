@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Web;
@@ -39,6 +40,7 @@ namespace TP3
             if (result > 0)
             {
                 Label1.Text = "Se borro la cuenta.";
+                TextBox2.Text = "";
             }
             else
             {
@@ -49,12 +51,12 @@ namespace TP3
         protected void Button3_Click(object sender, EventArgs e)
         {
             // Modificacion
-            SqlDataSourceABMcuentas.UpdateParameters["idCuenta"].DefaultValue = DropDownList1.SelectedValue;
             int result = SqlDataSourceABMcuentas.Update();
 
             if (result > 0)
             {
                 Label1.Text = "Se actualizo la cuenta.";
+                TextBox2.Text = "";
             }
             else
             {
@@ -62,15 +64,15 @@ namespace TP3
             }
         }
 
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataView dv = (DataView)SqlDataSourceSelectWhere.Select(DataSourceSelectArguments.Empty);
-            if (dv != null && dv.Count > 0)
+            SqlDataSourceListBoxSelectWhere.DataSourceMode = SqlDataSourceMode.DataReader;
+            SqlDataReader reader = (SqlDataReader)SqlDataSourceListBoxSelectWhere.Select(DataSourceSelectArguments.Empty);
+            if (reader.Read())
             {
-                DataRowView row = dv[0];
-                TextBox1.Text = row["descripcion"].ToString();
-                DropDownList1.SelectedValue = row["idCuenta"].ToString();
+                TextBox2.Text = reader["descripcion"].ToString();
             }
         }
+
     }
 }

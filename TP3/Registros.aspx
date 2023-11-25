@@ -28,27 +28,13 @@
                 <asp:Label ID="Label1" runat="server"></asp:Label>
             </p>
             <p>
-                <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" DataSourceID="SqlDataSourceABMregistros" DataTextField="monto" DataValueField="idRegistro" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" Width="316px">
+                <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" DataSourceID="SqlDataSourceABMregistros" DataTextField="monto" DataValueField="id" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" Width="316px">
                 </asp:DropDownList>
                 <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Baja" Width="137px" />
                 <asp:Label ID="Label2" runat="server"></asp:Label>
             </p>
             <p>
-                <asp:SqlDataSource ID="SqlDataSourceABMregistros" runat="server" ConnectionString="<%$ ConnectionStrings:TP3ConnectionString %>" DeleteCommand="DELETE FROM [RegistrosContables] WHERE [idRegistro] = @idRegistro" InsertCommand="INSERT INTO [RegistrosContables] ([idCuenta], [monto], [tipo]) VALUES (@idCuenta, @monto, @tipo)" SelectCommand="SELECT * FROM [RegistrosContables]" UpdateCommand="UPDATE [RegistrosContables] SET [idCuenta] = @idCuenta, [monto] = @monto, [tipo] = @tipo WHERE [idRegistro] = @idRegistro">
-                    <DeleteParameters>
-                        <asp:ControlParameter ControlID="DropDownList2" Name="idRegistro" PropertyName="SelectedValue" Type="Int32" />
-                    </DeleteParameters>
-                    <InsertParameters>
-                        <asp:ControlParameter ControlID="DropDownList1" Name="idCuenta" PropertyName="SelectedValue" Type="Int32" />
-                        <asp:ControlParameter ControlID="TextBox1" Name="monto" PropertyName="Text" Type="Int32" />
-                        <asp:ControlParameter ControlID="CheckBox1" Name="tipo" PropertyName="Checked" Type="Boolean" />
-                    </InsertParameters>
-                    <UpdateParameters>
-                        <asp:ControlParameter ControlID="DropDownList1" Name="idCuenta" PropertyName="SelectedValue" Type="Int32" />
-                        <asp:ControlParameter ControlID="TextBox1" Name="monto" PropertyName="Text" Type="Int32" />
-                        <asp:ControlParameter ControlID="CheckBox1" Name="tipo" PropertyName="Checked" Type="Boolean" />
-                        <asp:Parameter Name="idRegistro" Type="Int32" />
-                    </UpdateParameters>
+                <asp:SqlDataSource ID="SqlDataSourceABMregistros" runat="server" ConnectionString="<%$ ConnectionStrings:TP3ConnectionString %>" SelectCommand="SELECT * FROM [RegistrosContables]">
                 </asp:SqlDataSource>
             </p>
             <p>

@@ -13,48 +13,38 @@
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Menu.aspx">Menu</asp:HyperLink>
             </h3>
             <h3>Gestion de Cuentas</h3>
-            <p>Descripcion
-                <asp:TextBox ID="TextBox1" runat="server" Width="450px"></asp:TextBox>
-                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Alta" Width="110px" />
-                &nbsp;<asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Modificar" Width="176px" />
-            </p>
+            <h3>&nbsp;<asp:TextBox placeholder="Descripcion" ID="TextBox1" runat="server" Width="334px"></asp:TextBox>
+                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Alta" Width="244px" />
+                &nbsp;</h3>
             <p>
                 <asp:Label ID="Label1" runat="server"></asp:Label>
             </p>
             <p>
-                <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSourceDropDown" DataTextField="descripcion" DataValueField="idCuenta" Width="559px" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                </asp:DropDownList>
-                <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Baja" Width="113px" />
+                <asp:ListBox ID="ListBox1" runat="server" DataSourceID="SqlDataSourceABMcuentas" DataTextField="descripcion" DataValueField="id" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged" AutoPostBack="True" Height="133px" Width="193px"></asp:ListBox>
             </p>
             <p>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="idCuenta" DataSourceID="SqlDataSourceABMcuentas">
-                    <Columns>
-                        <asp:BoundField DataField="idCuenta" HeaderText="idCuenta" InsertVisible="False" ReadOnly="True" SortExpression="idCuenta" />
-                        <asp:BoundField DataField="descripcion" HeaderText="descripcion" SortExpression="descripcion" />
-                    </Columns>
-                </asp:GridView>
+                <asp:TextBox ID="TextBox2" runat="server" Width="324px" ></asp:TextBox>
+                <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Baja" Width="146px" />
+            &nbsp;<asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Modificar" Width="176px" />
             </p>
             <p>
-                <asp:SqlDataSource ID="SqlDataSourceABMcuentas" runat="server" ConnectionString="<%$ ConnectionStrings:TP3ConnectionString %>" DeleteCommand="DELETE FROM [Cuentas] WHERE [idCuenta] = @idCuenta" InsertCommand="INSERT INTO [Cuentas] ([descripcion]) VALUES (@descripcion)" SelectCommand="SELECT * FROM [Cuentas]" UpdateCommand="UPDATE [Cuentas] SET [descripcion] = @descripcion WHERE [idCuenta] = @idCuenta">
+                <asp:SqlDataSource ID="SqlDataSourceABMcuentas" runat="server" ConnectionString="<%$ ConnectionStrings:TP3ConnectionString %>" DeleteCommand="DELETE FROM [Cuentas] WHERE [id] = @id" InsertCommand="INSERT INTO [Cuentas] ([descripcion]) VALUES (@descripcion)" SelectCommand="SELECT * FROM [Cuentas]" UpdateCommand="UPDATE [Cuentas] SET [descripcion] = @descripcion WHERE [id] = @id">
                     <DeleteParameters>
-                        <asp:ControlParameter ControlID="DropDownList1" Name="idCuenta" PropertyName="SelectedValue" Type="Int32" />
+                        <asp:ControlParameter ControlID="ListBox1" Name="id" PropertyName="SelectedValue" Type="Int32" />
                     </DeleteParameters>
                     <InsertParameters>
                         <asp:Parameter Name="descripcion" Type="String" />
                     </InsertParameters>
                     <UpdateParameters>
-                        <asp:ControlParameter ControlID="TextBox1" Name="descripcion" PropertyName="Text" Type="String" />
-                        <asp:Parameter Name="idCuenta" Type="Int32" />
+                        <asp:ControlParameter ControlID="TextBox2" Name="descripcion" PropertyName="Text" Type="String" />
+                        <asp:ControlParameter ControlID="ListBox1" Name="id" PropertyName="SelectedValue" Type="Int32" />
                     </UpdateParameters>
                 </asp:SqlDataSource>
             </p>
             <p>
-                <asp:SqlDataSource ID="SqlDataSourceDropDown" runat="server" ConnectionString="<%$ ConnectionStrings:TP3ConnectionString %>" SelectCommand="SELECT * FROM [Cuentas]"></asp:SqlDataSource>
-            </p>
-            <p>
-                <asp:SqlDataSource ID="SqlDataSourceSelectWhere" runat="server" ConnectionString="<%$ ConnectionStrings:TP3ConnectionString %>" SelectCommand="SELECT * FROM [Cuentas] WHERE ([idCuenta] = @idCuenta)">
+                <asp:SqlDataSource ID="SqlDataSourceListBoxSelectWhere" runat="server" ConnectionString="<%$ ConnectionStrings:TP3ConnectionString %>" SelectCommand="SELECT * FROM [Cuentas] WHERE ([id] = @id)">
                     <SelectParameters>
-                        <asp:ControlParameter ControlID="DropDownList1" Name="idCuenta" PropertyName="SelectedValue" Type="Int32" />
+                        <asp:ControlParameter ControlID="ListBox1" Name="id" PropertyName="SelectedValue" Type="Int32" />
                     </SelectParameters>
                 </asp:SqlDataSource>
             </p>

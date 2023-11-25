@@ -80,13 +80,15 @@ namespace TP3
             if (dv != null && dv.Count > 0)
             {
                 DataRowView row = dv[0];
-                DropDownList1.SelectedValue = row["idCuenta"].ToString();
-                // TextBox1.Text = row["monto"].ToString();
-                if(CheckBox1.Checked.Equals(true))
+                DropDownList1.SelectedValue = row["id"].ToString();
+                TextBox1.Text = row["monto"].ToString();
+                if(row["tipo"].Equals(true))
                 {
-                    row["tipo"].Equals(true);
-                } else {
-                    row["tipo"].Equals(false);
+                    CheckBox1.Checked.Equals(true);
+                }
+                else
+                {
+                    CheckBox1.Checked.Equals(false);
                 }
             }
         }
