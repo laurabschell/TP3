@@ -24,10 +24,10 @@
                 <asp:Label ID="Label1" runat="server"></asp:Label>
             </p>
             <p>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="id" DataSourceID="SqlDataSourceABMregistros" ForeColor="#333333" GridLines="None" style="margin-right: 3px" Width="789px">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="id" DataSourceID="SqlDataSourceABMregistros" ForeColor="#333333" GridLines="None" style="margin-right: 3px" Width="839px">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
+                        <asp:BoundField DataField="id" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="id" />
                         <asp:BoundField DataField="monto" HeaderText="Monto" SortExpression="monto" />
                         <asp:CheckBoxField DataField="tipo" HeaderText="Tipo" SortExpression="tipo" />
                         <asp:BoundField DataField="idCuenta" SortExpression="idCuenta" />
@@ -55,9 +55,9 @@
                         <asp:Parameter Name="id" Type="Int32" />
                     </DeleteParameters>
                     <InsertParameters>
-                        <asp:Parameter Name="idCuenta" Type="Int32" />
-                        <asp:Parameter Name="monto" Type="Int32" />
-                        <asp:Parameter Name="tipo" Type="Boolean" />
+                        <asp:ControlParameter ControlID="DropDownList1" Name="idCuenta" PropertyName="SelectedValue" Type="Int32" />
+                        <asp:ControlParameter ControlID="TextBox1" Name="monto" PropertyName="Text" Type="Int32" />
+                        <asp:ControlParameter ControlID="CheckBox1" Name="tipo" PropertyName="Checked" Type="Boolean" />
                     </InsertParameters>
                     <UpdateParameters>
                         <asp:Parameter Name="idCuenta" Type="Int32" />
